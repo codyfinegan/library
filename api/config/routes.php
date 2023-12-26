@@ -1,6 +1,9 @@
 <?php
 
-return function (\Slim\App $app) {
-    $app->get('/', \Library\Http\Controller\Index::class);
+use Library\Http\Controller\Index;
+use Slim\App;
+
+return function (App $app) {
+    $app->map(['GET', 'POST'], '/', Index::class);
 };
 

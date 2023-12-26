@@ -2,16 +2,18 @@
 
 namespace Library\Http\Message;
 
+use JsonSerializable;
+
 class Response extends \Slim\Psr7\Response
 {
 
-    protected ?array $json = null;
+    protected ?JsonSerializable $json = null;
 
     /**
-     * @param array $payload
+     * @param JsonSerializable $payload
      * @return $this
      */
-    public function withJSON(array $payload): static
+    public function withJSON(JsonSerializable $payload): static
     {
         $response = clone $this;
         $response->json = $payload;

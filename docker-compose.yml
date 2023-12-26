@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:15-alpine
-    restart: always
     environment:
       POSTGRES_PASSWORD: postgres
     ports:
@@ -13,9 +12,8 @@ services:
 
   adminer:
     image: adminer
-    restart: always
     ports:
-      - 8080:8080
+      - 8008:8080
     networks:
       - backend
 

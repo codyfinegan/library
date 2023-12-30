@@ -1,3 +1,5 @@
 vendor/
 api/storage/*
 !api/storage/.gitkeep
+.idea
+.env

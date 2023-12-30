@@ -7,14 +7,13 @@ use Slim\Middleware\ContentLengthMiddleware;
 require __DIR__ . '/../vendor/autoload.php';
 
 Kernel::make(__DIR__ . '/../bootstrap.php')
-    ->configure()
+    ->errors()
+    ->env(__DIR__ . '/..')
     ->middleware([
         BodyParsingMiddleware::class,
-        \Library\Middleware\JsonResponse::class,
+        \Library\Http\Middleware\JsonResponse::class,
         ContentLengthMiddleware::class,
     ])
-    ->registerRoutes(__DIR__ . '/../config/routes.php')
-    ->app()
-    ->run();
-//
+    ->registerRoutes(__DIR__ . '/../routes')
+    ->boot()
 ;

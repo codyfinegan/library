@@ -1,6 +1,6 @@
 <?php
 
-namespace Library\Middleware;
+namespace Library\Http\Middleware;
 
 use Library\Http\Message\Response;
 use Psr\Http\Message\ResponseInterface;

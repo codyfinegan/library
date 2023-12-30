@@ -2,36 +2,16 @@
 
 namespace Library\Http\Controller;
 
-use GraphQL\Server\ServerConfig;
-use GraphQL\Server\StandardServer;
-use GraphQL\Type\Schema;
-use Psr\Http\Message\RequestInterface as Request;
 use Library\Http\Message\Response;
+use Psr\Http\Message\RequestInterface as Request;
+use Psr\SimpleCache\CacheInterface;
 
 class Index implements Controller
 {
-    protected Schema $schema;
-
-    /**
-     * @param Schema $schema
-     */
-    public function __construct(Schema $schema)
+    public function __invoke(Request $request, Response $response, CacheInterface $cache): Response
     {
-        $this->schema = $schema;
-    }
+        $response->getBody()->write('Hi');
 
-
-    public function __invoke(Request $request, Response $response): Response {
-
-        $config = ServerConfig::create()
-            ->setSchema($this->schema)
-//            ->setErrorFormatter($myFormatter)
-            ->setDebugFlag(true)
-        ;
-
-        $server = new StandardServer($config);
-        $result = $server->executePsrRequest($request);
-
-        return $response->withJSON($result);
+        return $response;
     }
 }
